@@ -102,10 +102,10 @@ _RegistrationNumber can be alphanumeric only_
                   }
         
         
-_**Note:**_: _fare is calculate using formula:
+_**Note:**_ _fare is calculate using formula:
                 fare= no_of_hours_car_in_parking*vehicle_type_charge_
-        
                 _If vehicle less than an hour the complete 1 hour charge is applied_
+        
         
                 Vehicle_type          charges/hour
                 1. car                   30
@@ -143,6 +143,6 @@ _**Note:**_: _fare is calculate using formula:
                 }
        
 
-8. Registration numbers of all cars of a particular colour.
+## Registration numbers of all cars of a particular colour.
 9. Slot number in which a car with a given registration number is parked.
 9. Slot numbers of all slots where a car of a particular colour is parked
