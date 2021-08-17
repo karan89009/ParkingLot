@@ -128,6 +128,7 @@ _**Note:**_ _fare is calculate using formula:
 ## Get the parking status of the given parking floor
         
 **API:** http://localhost:5000/parkingStatus/<floor_number>
+        
         eg: http://localhost:5000/parkingStatus/1
         
 **Type:** GET
@@ -144,6 +145,7 @@ _**Note:**_ _fare is calculate using formula:
 ## Registration numbers of all cars of a particular colour
         
 **API:** http://localhost:5000/registrationNumber/<color>
+        
         eg: http://localhost:5000/registrationNumber/cherry
         
 **Type:** GET
@@ -167,6 +169,7 @@ _**Note:**_ _fare is calculate using formula:
 ## Slot number in which a car with a given registration number is parked
         
 **API:** http://localhost:5000/slotNumber/<registrationNumber>
+        
         eg: http://localhost:5000/slotNumber/UP53AC9548
         
 **Type:** GET
@@ -184,6 +187,7 @@ _**Note:**_ _fare is calculate using formula:
 ## Slot numbers of all slots where a car of a particular colour is parked
         
 **API:** http://localhost:5000/carslotNumber/<color>
+        
         eg: http://localhost:5000/carslotNumber/blue
         
 **Type:** GET
