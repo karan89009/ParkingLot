@@ -19,9 +19,9 @@ The vehicle is allotted a parking slot which is nearest to the entry. On the veh
 
 The system handles, the following use cases.
 
-# Create a parking lot with ‘x’ floors and 'n' capacity
+## Create a parking lot with ‘x’ floors and 'n' capacity
 
-# Create a floor with a given vehicle parking configuration ratio
+## Create a floor with a given vehicle parking configuration ratio
 
 **API:** http://localhost:5000/parking
 
@@ -51,7 +51,7 @@ _**Note:** The capacity should be multiple of 10 in order to divide it into 6:3:
 
 _**Note:** buffer: is ratio buffer where 1st element is car capacity per floor, 2nd element is bike capacity per floor and 3rd element is large_vehicle capacity per floor._
 
-# Park a vehicle.
+## Park a vehicle.
 
 **API:** http://localhost:5000/vehicle/booking
 
@@ -87,7 +87,7 @@ _RegistrationNumber can be alphanumeric only_
             If same registration number car is booked it will throw error : "Already in Parking!!!"_
             
             
-# Exit a vehicle
+## Exit a vehicle
 
  **API:** http://localhost:5000/vehicle/exit/<RegistrationNumber>
         
@@ -112,7 +112,7 @@ _**Note:**_: _fare is calculate using formula:
                 2. bike                  10
                 3. large_vehicle         50
   
-# Get the parking status of the entire parking lot
+## Get the parking status of the entire parking lot
         
 **API:** http://localhost:5000/parkingStatus
         
@@ -127,7 +127,22 @@ _**Note:**_: _fare is calculate using formula:
                 }
         
         
-7. Get the parking status of the given parking floor.
+## Get the parking status of the given parking floor
+        
+**API:** http://localhost:5000/parkingStatus/<floor_number>
+        eg: http://localhost:5000/parkingStatus/1
+        
+**Type:** GET
+
+**Output:**
+        
+        
+                {
+                    "available": 19,
+                    "unavailable": 1
+                }
+       
+
 8. Registration numbers of all cars of a particular colour.
 9. Slot number in which a car with a given registration number is parked.
 9. Slot numbers of all slots where a car of a particular colour is parked
