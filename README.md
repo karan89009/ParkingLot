@@ -19,10 +19,10 @@ The vehicle is allotted a parking slot which is nearest to the entry. On the veh
 
 The system handles, the following use cases.
 
-**-Create a parking lot with ‘x’ floors and 'n' capacity:
+**-Create a parking lot with ‘x’ floors and 'n' capacity:**
 
--Create a floor with a given vehicle parking configuration ratio.
-**
+**-Create a floor with a given vehicle parking configuration ratio.**
+
 **API:** http://localhost:5000/parking
 
 **Type:** POST
@@ -113,6 +113,16 @@ _**Note:**_: _fare is calculate using formula:
                 3. large_vehicle         50
   
 **-Get the parking status of the entire parking lot.**
+        
+**API:** http://localhost:5000/parkingStatus
+
+**Type:** GET
+
+**Output:**
+                {
+                    "available": 59,
+                    "unavailable": 1
+                }
 7. Get the parking status of the given parking floor.
 8. Registration numbers of all cars of a particular colour.
 9. Slot number in which a car with a given registration number is parked.
