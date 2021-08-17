@@ -24,19 +24,47 @@ router.delete('/refresh/ParkingSpace',async(req, res)=>{
     res.send('deteted')
 })
 router.get('/registrationNumber/:color',async(req,res)=>{
-    const car=await Vehicle.find({color:req.params.color},{registrationNumber:1,color:1})
-    console.log(car);  
-    res.send(car)
+    try{
+        const car=await Vehicle.find({color:req.params.color},{registrationNumber:1,color:1})
+        if(car==null)
+            throw Error("No car is of color "+req.params.color+" in parking!!!")
+        console.log(car);  
+        res.send(car)
+    }
+    catch(e){
+        res.json({
+            error:e.message
+        })
+    }
 })
 router.get('/slotNumber/:registrationNumber',async(req,res)=>{
-    const car=await Vehicle.find({registrationNumber:req.params.registrationNumber},{registrationNumber:1,slot_number:1})
-    console.log(car);  
-    res.send(car)
+    try{
+        const car=await Vehicle.findOne({registrationNumber:req.params.registrationNumber},{registrationNumber:1,slot_number:1})
+        if(car==null)
+            throw Error("No such car found in parking!!!")
+        console.log(car);  
+        res.send(car)
+    }
+    catch(e){
+        res.json({
+            error:e.message
+        })
+    }
+    
 })
 router.get('/carslotNumber/:color',async(req,res)=>{
+    try{
     const park=await Vehicle.find({$and:[{color:req.params.color},{type:'car'}]},{color:1,slot_number:1,registrationNumber:1});
+    if(park.length==0)
+        throw Error("No car is of color "+req.params.color+" in parking!!!")
     console.log(park.length);
     res.send(park)
+    }
+    catch(e){
+        res.json({
+            error:e.message
+        })
+    }
 })
 
 router.get('/vehicle',async(req,res)=>{
@@ -49,10 +77,53 @@ router.get('/parkingSpace/:id',async(req,res)=>{
     console.log(park.length);
     res.send(park)
 })
+router.get('/parkingStatus',async(req,res)=>{
+    const park=await ParkingSpace.find({});
+    let available=0,unavailable=0;
+    for(let i=0;i<park.length;i++)
+    {
+        if(park[i].is_available==true)
+            available+=1
+        else
+            unavailable+=1
+    }
+    console.log(park.length);
+    res.json({
+        available:available,
+        unavailable:unavailable
+    })
+})
 router.get('/parkingSpace',async(req,res)=>{
+
     const park=await ParkingSpace.find({},{floor_number:1,is_available:1,parking_zone_id:1}).sort('parking_zone_id');
     console.log(park.length);
     res.send(park)
+})
+router.get('/parkingStatus/:floor',async(req,res)=>{
+    try{
+        const park=await ParkingSpace.find({floor_number:req.params.floor});
+        if(park.length==0)
+            throw Error("No such floor exists")
+        let available=0,unavailable=0;
+        for(let i=0;i<park.length;i++)
+        {
+            if(park[i].is_available==true)
+                available+=1
+            else
+                unavailable+=1
+        }
+        console.log(park.length);
+        res.json({
+            available:available,
+            unavailable:unavailable
+        })
+    }
+    catch(e){
+        res.json({
+            error:e.message
+        })
+    }
+    
 })
 
 router.get('/parking',async(req,res)=>{
@@ -130,7 +201,9 @@ router.post('/vehicle/booking',async(req,res)=>{
         for(let i=0;i<parkingSpace.length;i++){
             if(parkingSpace[i].vehicle_no==vehicle.registrationNumber){
                 flag=1;
-                res.send("Already in parking!!!")
+                res.json({
+                    error:"Already in parking!!!"
+                })
                 break;
             }   
         }
