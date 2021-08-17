@@ -19,9 +19,7 @@ The vehicle is allotted a parking slot which is nearest to the entry. On the veh
 
 The system handles, the following use cases.
 
-## Create a parking lot with ‘x’ floors and 'n' capacity
-
-## Create a floor with a given vehicle parking configuration ratio
+## Create a parking lot with ‘x’ floors and 'n' capacity and create a floor with a given vehicle parking configuration ratio
 
 **API:** http://localhost:5000/parking
 
@@ -35,7 +33,7 @@ The system handles, the following use cases.
         }
         
 _**Note:** The capacity should be multiple of 10 in order to divide it into 6:3:1 ratios_
-
+           _floor is number of floors, Capacity is the number of parking slots per floor_             
 **Output:**
 
         {
@@ -143,6 +141,71 @@ _**Note:**_ _fare is calculate using formula:
                 }
        
 
-## Registration numbers of all cars of a particular colour.
-9. Slot number in which a car with a given registration number is parked.
-9. Slot numbers of all slots where a car of a particular colour is parked
+## Registration numbers of all cars of a particular colour
+        
+**API:** http://localhost:5000/registrationNumber/<color>
+        eg: http://localhost:5000/registrationNumber/cherry
+        
+**Type:** GET
+
+**Output:**
+        
+                [
+                    {
+                        "_id": "611c3303b769c05034ad423b",
+                        "registrationNumber": "UP53AC9548",
+                        "color": "cherry"
+                    },
+                    {
+                        "_id": "611c3695f485431f4ceca614",
+                        "registrationNumber": "UP53AC9549",
+                        "color": "cherry"
+                    }
+                ]
+       
+        
+## Slot number in which a car with a given registration number is parked
+        
+**API:** http://localhost:5000/slotNumber/<registrationNumber>
+        eg: http://localhost:5000/slotNumber/UP53AC9548
+        
+**Type:** GET
+
+**Output:**
+        
+        
+                {
+                    "slot_number": "1F:1",
+                    "_id": "611c3303b769c05034ad423b",
+                    "registrationNumber": "UP53AC9548"
+                }
+        
+       
+## Slot numbers of all slots where a car of a particular colour is parked
+        
+**API:** http://localhost:5000/carslotNumber/<color>
+        eg: http://localhost:5000/carslotNumber/blue
+        
+**Type:** GET
+
+**Output:**
+        
+        
+                       [
+                                    {
+                                        "slot_number": "1F:1",
+                                        "_id": "611c3303b769c05034ad423b",
+                                        "registrationNumber": "UP53AC9548",
+                                        "color": "cherry"
+                                    },
+                                    {
+                                        "slot_number": "2F:1",
+                                        "_id": "611c3695f485431f4ceca614",
+                                        "registrationNumber": "UP53AC9549",
+                                        "color": "cherry"
+                                    }
+                        ]
+        
+**_Note:_** _slot_number: 1F:1 means 1st counter which is at 1st floor._
+                          _2F:1 means 2nd counter which is at 1st floor._
+        
