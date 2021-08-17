@@ -221,7 +221,7 @@ router.post('/vehicle/booking',async(req,res)=>{
                 numberOfvehicles=await ParkingSpace.find({$and:[{vehicle_type:vehicle.type},{floor_number:(Math.floor(i/parking.capacity)+1)}]})
                 console.log("number of vehicles:"+numberOfvehicles.length+"floor"+(Math.floor(i/parking.capacity)+1))
                 if((vehicle.type=='car'&& numberOfvehicles.length>=parking.buffer[0])||(vehicle.type=='bike'&& numberOfvehicles.length>=parking.buffer[1])||(vehicle.type=='large_vehicle'&& numberOfvehicles.length>=parking.buffer[2]))
-                    i=(i+parking.capacity)-((i+parking.capacity)%10)
+                    i=(i+parking.capacity)-((i+parking.capacity)%10)-1
                 else{
                     const updatedParkingSpace=await ParkingSpace.findOneAndUpdate(
                     {_id:parkingSpace[i]._id},{is_available:false,vehicle_no:vehicle.registrationNumber,
