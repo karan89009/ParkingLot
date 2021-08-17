@@ -87,7 +87,7 @@ _RegistrationNumber can be alphanumeric only_
             
 ## Exit a vehicle
 
- **API:** http://localhost:5000/vehicle/exit/<RegistrationNumber>
+ **API:** http://localhost:5000/vehicle/exit/:RegistrationNumber
         
         eg: http://localhost:5000/vehicle/exit/UP53AC9548
         
@@ -127,7 +127,7 @@ _**Note:**_ _fare is calculate using formula:
         
 ## Get the parking status of the given parking floor
         
-**API:** http://localhost:5000/parkingStatus/<floor_number>
+**API:** http://localhost:5000/parkingStatus/:floor_number
         
         eg: http://localhost:5000/parkingStatus/1
         
@@ -144,7 +144,7 @@ _**Note:**_ _fare is calculate using formula:
 
 ## Registration numbers of all cars of a particular colour
         
-**API:** http://localhost:5000/registrationNumber/<color>
+**API:** http://localhost:5000/registrationNumber/:color
         
         eg: http://localhost:5000/registrationNumber/cherry
         
@@ -168,7 +168,7 @@ _**Note:**_ _fare is calculate using formula:
         
 ## Slot number in which a car with a given registration number is parked
         
-**API:** http://localhost:5000/slotNumber/<registrationNumber>
+**API:** http://localhost:5000/slotNumber/:registrationNumber
         
         eg: http://localhost:5000/slotNumber/UP53AC9548
         
@@ -186,7 +186,7 @@ _**Note:**_ _fare is calculate using formula:
        
 ## Slot numbers of all slots where a car of a particular colour is parked
         
-**API:** http://localhost:5000/carslotNumber/<color>
+**API:** http://localhost:5000/carslotNumber/:color
         
         eg: http://localhost:5000/carslotNumber/blue
         
